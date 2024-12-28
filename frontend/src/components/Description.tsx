@@ -11,7 +11,8 @@ function List({description}: { description: string }) {
   );
 }
 
-// Define props types for the Description component  you can use an interface or type to describe the component’s props:
+// Define props types for the Description component  you can use an interface or type 
+// to describe the component’s props:
 type DescriptionParam = {
   text: string
   subtext?: string// Optional subtext property
