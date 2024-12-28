@@ -9,6 +9,11 @@ import Footer from './components/Footer.tsx'
 import About from './pages/about.tsx'
 import { Link } from 'react-router-dom'
 import Home from './pages/Home.tsx'
+import UseState from './pages/UseState.tsx'
+import UseEffect from './pages/UseEffect.tsx'
+import UseRef from './pages/UseRef.tsx'
+import UseMemo from './pages/UseMemo.tsx'
+
 
 
 
@@ -22,8 +27,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path='/UseState' element={<UseState />}></Route>
+        <Route path='/UseEffect' element={<UseEffect />}></Route>
+        <Route path='/UseRef' element={<UseRef />}></Route>
+        <Route path='/UseMemo' element={<UseMemo />}></Route>
       </Routes>
     </Router>
   );

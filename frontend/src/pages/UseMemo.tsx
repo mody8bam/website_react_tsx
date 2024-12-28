@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Description from '../components/Description';
@@ -11,11 +11,29 @@ import product2 from '../assets/images/product2.jpg';
 import product3 from '../assets/images/product3.jpg'; 
 
 'use client';
+
+const calculaterIncome=()=>{
+    let number=10;
+    for(let i =0;i<10000;i++){
+        number+=i;
+        }
+    console.log('calculating income'); 
+    return number;
+  };
+
 function Home(){
   const showDescription = true;
   const showFooter = true;
-  
-  
+
+  const [counter,setCounter]=useState(0);
+  const [shouldCalclate,setShouldCalculate]=useState(false);
+  const income=useMemo(()=> calculaterIncome(),[shouldCalclate]);
+  const handleClick=()=>{
+    setCounter(counter+1);
+    if(counter===15)
+        {setShouldCalculate(true);}
+    
+};
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       
@@ -41,17 +59,14 @@ function Home(){
         </div>
 
         <div className='mt-8'>
-          <ul className=' flex flex-col items-center justify-center  bg-gray-100'>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseState'>use state page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseEffect'>use effect page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseRef'>use ref page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseMemo'>use memo page</Link></li>
-          </ul>
+            <h3>counter: {counter}</h3>
+            <h3>Income: {income}</h3>
+          <button onClick={handleClick}>increment</button>
           
 
         </div>
 
-        next  all hooks and redux,usecontext for statemanagment for avoiding prop drilling
+
       </div>
 
       {showFooter && <Footer />} 

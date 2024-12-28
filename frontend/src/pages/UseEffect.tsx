@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Description from '../components/Description';
@@ -15,7 +16,24 @@ function Home(){
   const showDescription = true;
   const showFooter = true;
   
-  
+  const [counter,setCounter]=useState(0);
+  const handleClick=()=>{
+    setCounter(counter+1);
+    if(counter===5)
+        {setSuccess(true);}
+    else
+    if(counter===10)
+    {setSuccess2(true);};
+};
+
+const [success,setSuccess]=useState(false);
+const [success2,setSuccess2]=useState(false);
+
+  useEffect(()=>{
+    console.log('useEffect called');
+  },[success,success2]);   //if we pass empty array it will only run once when component is mounted, if there parameter(s) one or many if value of it (changes) it will run again
+
+  useEffect(()=>{console.log('## counter triggered')},[setSuccess2]); //if counter changes it will run again
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       
@@ -40,18 +58,16 @@ function Home(){
           <Image src={product3} alt="Product 3" /> 
         </div>
 
-        <div className='mt-8'>
-          <ul className=' flex flex-col items-center justify-center  bg-gray-100'>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseState'>use state page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseEffect'>use effect page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseRef'>use ref page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseMemo'>use memo page</Link></li>
-          </ul>
-          
-
+        <div>
+            <h3>counter: {counter}</h3>
+            
+            <button onClick={handleClick} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                Click to increment
+            </button>
         </div>
+        
 
-        next  all hooks and redux,usecontext for statemanagment for avoiding prop drilling
+
       </div>
 
       {showFooter && <Footer />} 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Description from '../components/Description';
@@ -15,7 +15,17 @@ function Home(){
   const showDescription = true;
   const showFooter = true;
   
-  
+    
+  const inputRef=useRef<HTMLInputElement>(null);
+  const handleClick=()=>{
+        if(inputRef.current){
+            inputRef.current.focus();
+        }
+        console.log(inputRef.current?.value);
+    };
+    const handleInputChange=(e)=>{
+        console.log(e.target.value);
+    };
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       
@@ -40,18 +50,14 @@ function Home(){
           <Image src={product3} alt="Product 3" /> 
         </div>
 
-        <div className='mt-8'>
-          <ul className=' flex flex-col items-center justify-center  bg-gray-100'>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseState'>use state page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseEffect'>use effect page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseRef'>use ref page</Link></li>
-            <li className='text-2xl font-bold mb-4 hover:text-blue-300'><Link to='./UseMemo'>use memo page</Link></li>
-          </ul>
+        <div className='mt-8 flex flex-col items-center justify-center '>
+        <button onClick={handleClick} >click to focus</button>
+          <input type="text" ref={inputRef} onChange={handleInputChange} className='border border-gray-300 p-2 w-1/2 mb-4 text-center'/>
           
 
         </div>
 
-        next  all hooks and redux,usecontext for statemanagment for avoiding prop drilling
+
       </div>
 
       {showFooter && <Footer />} 

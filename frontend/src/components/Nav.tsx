@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MinusIcon, HomeIcon } from '@heroicons/react/24/solid';
+import { MinusIcon, Bars3Icon } from '@heroicons/react/24/solid';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-    <header className="bg-blue-500 text-white sticky top-0 z-50">
+    <header className="bg-blue-500 text-white sticky top-0 z-50 ">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">
           My App
@@ -16,7 +16,7 @@ const Header = () => {
           className="text-white focus:outline-none md:hidden" 
           onClick={() => setIsOpen(!isOpen)} 
         >
-          {isOpen ? <MinusIcon className="w-6 h-6" /> : <HomeIcon className="w-6 h-6" />}
+          {isOpen ? <MinusIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
         </button>
         <nav className="hidden md:flex space-x-4">
           <Link to="/" className="hover:text-gray-100">Home</Link>
